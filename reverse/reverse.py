@@ -42,6 +42,29 @@ class LinkedList:
     # if we've gotten here, then the target node isn't in our list
     return False
 
+  """
+  input: called upon the list itself
+  1 --> 2 --> 3 --> 4 --> null
+  
+  output: list in reverse
+  4 --> 3 --> 2 --> 1 --> null: technically we are changing the pointers direction
+
+  Constraints:
+  1. Can't have a tail
+
+  We have a head == 0
+
+  """
+
   def reverse_list(self):
-    # TO BE COMPLETED
+    # initialize:
+    # prev to None:
+    # set current = self.head to keep track of where we are
+    # while current !=None:
+    # swaping by reference
+      # next = current.next
+      # prev = current
+      # current = next
+    # head = prev
     pass
+
