@@ -5,6 +5,9 @@ class Node:
     # reference to the next node in the list
     self.next_node = next_node
 
+  def __repr__(self):
+    return f"value:{self.value} next_node: {self.next_node}"
+
   def get_value(self):
     return self.value
 
@@ -19,6 +22,9 @@ class LinkedList:
   def __init__(self):
     # reference to the head of the list
     self.head = None
+
+  def __repr__(self):
+    return f"Head= {self.head}"
 
   def add_to_head(self, value):
     node = Node(value)
@@ -59,12 +65,29 @@ class LinkedList:
   def reverse_list(self):
     # initialize:
     # prev to None:
+    prev = None
     # set current = self.head to keep track of where we are
+    current = self.head
+    # print("Whats the head",current)
     # while current !=None:
+    while current is not None:
     # swaping by reference
-      # next = current.next
-      # prev = current
-      # current = next
-    # head = prev
-    pass
+      next_node = current.next_node
+      prev = current
+      current = next_node
+    self.head = prev
+    # need to print the rest
+    print("after while",self.head)
+    
 
+new_list = LinkedList()
+# print(new_list.add_to_head(2))
+# print(new_list)
+print(new_list.add_to_head(5))
+print(new_list.add_to_head(7))
+print(new_list.add_to_head(0))
+print(new_list.add_to_head(3))
+print(new_list)
+
+print("Reverse",new_list.reverse_list())
+print("after reverse",new_list)
