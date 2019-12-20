@@ -137,45 +137,4 @@ class DoublyLinkedList:
 
         return max_value
 
-class Stack: # --> LIFO
-    def __init__(self):
-        self.size = 0
-        # Why is our DLL a good choice to store our elements?
-        # self.storage = ? python lists are not allowed to be used
-        self.storage = DoublyLinkedList()
 
-    def push(self, value):
-        self.size += 1
-        # values are always added to the "top"
-        return self.storage.add_to_head(value)
-
-    def pop(self):
-        # if
-        if self.size > 0:
-            self.size -= 1
-            # values are always removed from the "top"
-            return self.storage.remove_from_head()
-
-    def len(self):
-        return self.size
-
-class Queue:
-    def __init__(self):
-        self.size = 0
-        # Why is our DLL a good choice to store our elements?
-        self.storage = DoublyLinkedList()
-
-    def __repr__(self):
-        return f" {self.storage}"
-
-    def enqueue(self, value):
-        self.size += 1
-        return self.storage.add_to_tail(value)
-
-    def dequeue(self):
-        if self.size > 0:
-            self.size -= 1
-            return self.storage.remove_from_head()
-
-    def len(self):
-        return self.size
