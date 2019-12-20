@@ -72,10 +72,11 @@ class LinkedList:
     # while current !=None:
     while current is not None:
     # swaping by reference
-      next_node = current.next_node
+      next = current.next_node
+      current.next_node = prev
       prev = current
-      current = next_node
-    self.head = prev
+      current = next
+      self.head = prev
     # need to print the rest
     print("after while",self.head)
     
@@ -83,11 +84,11 @@ class LinkedList:
 new_list = LinkedList()
 # print(new_list.add_to_head(2))
 # print(new_list)
-print(new_list.add_to_head(5))
-print(new_list.add_to_head(7))
-print(new_list.add_to_head(0))
-print(new_list.add_to_head(3))
-print(new_list)
+# print(new_list.add_to_head(5))
+# print(new_list.add_to_head(7))
+# print(new_list.add_to_head(0))
+# print(new_list.add_to_head(3))
+# print(new_list)
 
 print("Reverse",new_list.reverse_list())
 print("after reverse",new_list)
