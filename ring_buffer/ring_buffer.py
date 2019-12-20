@@ -1,5 +1,5 @@
 from doubly_linked_list import DoublyLinkedList
-# from ring_buffer.doubly_linked_list import Stack
+from doubly_linked_list import Stack
 # from ring_buffer.doubly_linked_list import Queue
 
 """
@@ -31,6 +31,11 @@ PLAN:
 
 stack
 
+['a', 'b', 'c']
+['d', 'b', 'c']
+['e', 'b', 'c']
+
+
 replacing by passing through reference?
 
 2. get()
@@ -44,8 +49,8 @@ class RingBuffer:
         self.current = None
         self.storage = DoublyLinkedList() #will hold all of the items
 
-    # def __repr__(self):
-    #     return f"current: {self.storage.head}"
+    def __repr__(self):
+        return f"storage: {self.storage}"
 
     # def __str__(self):
     #     return f"current: {self.current}"
@@ -53,31 +58,54 @@ class RingBuffer:
     def append(self, item):
         current_item = item
         print("current item:", current_item)
-        print("capacity", self.capacity)
-        # if self.capacity > self.storage.length --> if the value turn into a NoneType, check your operator
-        if self.storage.length < self.capacity:
+        # use current as a pointer!!!
+
+        # if self.storage.length < self.capacity:
+        #     self.storage.add_to_head(current_item)
+        #     #after append, move storage to follow the tail
+        #     self.current = self.storage.tail # there will always be a none value at the end. This gives us access to current.next!!!!!
+        #     print("current", self.current)
+            
+        if self.storage.length == self.capacity:           # This is limit 
+            if self.current == self.storage.tail:          # If current is == to the tail
+                self.storage.remove_from_tail()            # Remove from the tail which is the oldest
+                self.storage.add_to_tail(current_item)     # add new item to the tail
+                self.current = self.storage.head           # make current the head
+                print("nested if current", self.current)   #[e]
+                
+            else:                                               # length > capacity
+                # print('current b4 else happens', self.storage.head)     
+                self.current.insert_after(current_item)         #insert item after current 
+                self.storage.length += 1                        # go through the length             
+                print("prev  current", self.current.prev)
+                print("current", self.current)
+                print("current next", self.current.next)
+                self.current = self.current.next               #make current equal next                       
+                print("nested 1 else current", self.current.next)
+                self.storage.delete(self.current.next)         #back up by one 
+                print("nested 2 else current", self.current.next)      
+
+            # print("Head", self.storage.head) #--> c
+            # print("Tail", self.storage.tail) # --> a
+                # # print("nested else current", self.current)
+        
+        else:
             # add to head
             self.storage.add_to_head(current_item)
-            
-        if  self.storage.length > self.capacity: # This needs to limit
-            
-            # add to 
-            self.storage.add_to_tail(current_item)
-            # self.current = self.storage.tail 
-            print("current item:", self.current)
-            print("head", self.head)
+            #after append, move storage to follow the tail
+            self.current = self.storage.tail # there will always be a none value at the end. This gives us access to current.next!!!!!
+            print("current", self.current)
 
-        
-
-
+        print("Head", self.storage.head) #--> c
+        print("Tail", self.storage.tail) # --> a
 
     def get(self):
         # Note:  This is the only [] allowed
         list_buffer_contents = [] 
         # current = tail --> print in direction expected in test
         current = self.storage.tail
-        print(self.storage.head)
-        # while current = head
+        
+        # while current
         while current: # we need to grab ALL items in []  iteration
             list_buffer_contents.append(current.value)
             current = current.prev
@@ -98,13 +126,13 @@ class ArrayRingBuffer:
         pass
 
 
-buffer = RingBuffer(3)
+buffer = RingBuffer(5)
 print(buffer.get())
 print(buffer.append('a'))
 print(buffer.append('b'))
 print(buffer.append('c'))
-# print(buffer.get())
 print(buffer.append('d'))
+print(buffer.append('e'))
+print(buffer.append('f'))
+print(buffer.append('g'))
 print(buffer.get())
-# print(buffer.append('e'))
-# print(buffer.get())
