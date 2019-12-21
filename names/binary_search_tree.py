@@ -1,5 +1,5 @@
 class BinarySearchTree:                              # worst case O(n), average case O(log n)
-    def __init__(self, value: int):                  # restricting the input value to a number
+    def __init__(self, value):                  # restricting the input value to a number
         self.value = value
         self.left = None                             # use to traverse left ==> pointers
         self.right = None                            # use to traverse right ==> pointers

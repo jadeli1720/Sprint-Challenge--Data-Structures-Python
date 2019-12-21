@@ -49,7 +49,8 @@ left and right
 """
 
 duplicates = []
-nameTree = BinarySearchTree(names_1.value)
+nameTree = BinarySearchTree(names_1)
+print(nameTree)
 
 for name in names_1:
     # insert each name into 
@@ -64,7 +65,7 @@ for name in names_2:
 # for name_1 in names_1:                #0(n)
 #     for name_2 in names_2:            #0(n)
 #         if name_1 == name_2:          #
-#             duplicates.append(name_1)
+#             duplicates.append(name_1) 
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
