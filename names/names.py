@@ -14,7 +14,7 @@ f.close()
 """
 Using original code, it takes 9.9 seconds to find duplicates
 There are 64 duplicates total
-runtime: O(n^2)
+runtime: O(n^2) ?
 
 Navigate both names directories and make the runtime more efficient to find duplicates.
 runtime = second
@@ -42,10 +42,14 @@ loop through names_1 and insert into BST
 
 Use contains to check names_2 against names_1
 
+BST has values
+roots
+left and right
+
 """
 
 duplicates = []
-nameTree = BinarySearchTree(names_1)
+nameTree = BinarySearchTree(names_1.value)
 
 for name in names_1:
     # insert each name into 
