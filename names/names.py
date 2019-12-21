@@ -49,7 +49,8 @@ left and right
 """
 
 duplicates = []
-nameTree = BinarySearchTree(names_1)
+nameTree = BinarySearchTree(names_1[0])
+# Needed to isolate the first index!!
 print(nameTree)
 
 for name in names_1:
