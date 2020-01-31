@@ -8,6 +8,9 @@ class ListNode:
         self.prev = prev
         self.next = next
 
+    def __repr__(self):
+        return f"Value: {self.value}"
+
     """Wrap the given value in a ListNode and insert it
     after this node. Note that this node could already
     have a next node it is point to."""
@@ -47,6 +50,9 @@ class DoublyLinkedList:
 
     def __len__(self):
         return self.length
+    
+    def __repr__(self):
+        return f"Head: {self.head}, Tail: {self.tail}"
 
     """Wraps the given value in a ListNode and inserts it 
     as the new head of the list. Don't forget to handle 
@@ -136,3 +142,25 @@ class DoublyLinkedList:
             current = current.next
 
         return max_value
+
+class Stack: # --> LIFO
+    def __init__(self):
+        self.size = 0
+        # Why is our DLL a good choice to store our elements?
+        # self.storage = ? python lists are not allowed to be used
+        self.storage = DoublyLinkedList()
+
+    def push(self, value):
+        self.size += 1
+        # values are always added to the "top"
+        return self.storage.add_to_head(value)
+
+    def pop(self):
+        # if
+        if self.size > 0:
+            self.size -= 1
+            # values are always removed from the "top"
+            return self.storage.remove_from_head()
+
+    def len(self):
+        return self.size
